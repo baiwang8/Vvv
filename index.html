@@ -17,6 +17,8 @@
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+              serif: ['Playfair Display', 'serif'],
             },
             animation: {
               'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -24,18 +26,64 @@
               'float-delayed': 'float 6s ease-in-out 3s infinite',
               'spin-slow': 'spin 15s linear infinite',
               'reverse-spin': 'spin 15s linear infinite reverse',
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'fade-in-up': 'fadeInUp 0.5s ease-out',
+              'gradient-x': 'gradient-x 15s ease infinite',
+              'marquee': 'marquee 25s linear infinite',
+              'scan': 'scan 1.5s linear infinite',
+              'fall': 'fall 10s linear infinite',
+              'scroll-chart': 'scrollChart 20s linear infinite',
+              'slot-spin': 'slotSpin 0.5s ease-out',
             },
             keyframes: {
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-20px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'gradient-x': {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center',
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center',
+                },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              scan: {
+                '0%': { top: '0%' },
+                '100%': { top: '100%' },
+              },
+              fall: {
+                '0%': { transform: 'translateY(-100vh) rotate(0deg)' },
+                '100%': { transform: 'translateY(100vh) rotate(360deg)' },
+              },
+              scrollChart: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              },
+              slotSpin: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(0)' },
               }
             }
           }
         }
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
       body {
         font-family: 'Inter', sans-serif;
@@ -61,16 +109,39 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #475569; 
       }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .rotate-y-180 {
+        transform: rotateY(180deg);
+      }
+      .text-shadow-green {
+        text-shadow: 0 0 5px #4ade80;
+      }
+      .text-shadow-glow {
+        text-shadow: 0 0 10px currentColor;
+      }
+      .clip-path-angled {
+        clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+      }
     </style>
   <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
   }
 }
 </script>

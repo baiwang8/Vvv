@@ -9,20 +9,14 @@ interface CartDrawerProps {
   cart: Product[];
   onRemove: (id: string) => void;
   language: Language;
-  onCheckout: () => void;
 }
 
-const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, cart, onRemove, language, onCheckout }) => {
+const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, cart, onRemove, language }) => {
   const t = TRANSLATIONS[language].cart;
   const currencyPrefix = language === 'zh' ? '¥' : '$';
   const priceMultiplier = language === 'zh' ? 7.1 : 1;
 
   const total = cart.reduce((sum, item) => sum + (item.price * priceMultiplier), 0);
-
-  const handleCheckoutClick = () => {
-    onCheckout();
-    onClose();
-  };
 
   return (
     <>
@@ -104,10 +98,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, cart, onRemove
                   {currencyPrefix}{Math.round(total)}
                 </span>
               </div>
-              <button 
-                onClick={handleCheckoutClick}
-                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl text-white font-bold flex items-center justify-center shadow-lg shadow-cyan-900/20 hover:shadow-cyan-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
+              <button className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl text-white font-bold flex items-center justify-center shadow-lg shadow-cyan-900/20 hover:shadow-cyan-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all">
                 {t.checkout} <CreditCard className="w-5 h-5 ml-2" />
               </button>
             </div>

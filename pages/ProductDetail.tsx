@@ -8,9 +8,10 @@ interface ProductDetailProps {
   onBack: () => void;
   onAddToCart: (product: Product) => void;
   language: Language;
+  onBuyNow: (product: Product) => void;
 }
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToCart, language }) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToCart, language, onBuyNow }) => {
   const t = TRANSLATIONS[language].detail;
   const currencyPrefix = language === 'zh' ? '¥' : '$';
   const priceMultiplier = language === 'zh' ? 7.1 : 1;
@@ -82,12 +83,20 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
                 </div>
              </div>
              
-             <button 
-               onClick={() => onAddToCart(product)}
-               className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl text-white font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/25 active:scale-95 transition-all flex items-center justify-center"
-             >
-               <Download className="w-5 h-5 mr-2" /> {t.buy}
-             </button>
+             <div className="flex gap-4">
+                <button 
+                  onClick={() => onBuyNow(product)}
+                  className="flex-1 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl text-white font-bold text-lg hover:shadow-lg hover:shadow-cyan-500/25 active:scale-95 transition-all flex items-center justify-center"
+                >
+                  <Download className="w-5 h-5 mr-2" /> {t.buy}
+                </button>
+                <button 
+                   onClick={() => onAddToCart(product)}
+                   className="px-4 py-4 border border-slate-600 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700 transition-all"
+                >
+                   + Cart
+                </button>
+             </div>
              <p className="text-center text-slate-500 text-xs mt-4">{t.secure}</p>
           </div>
 

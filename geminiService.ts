@@ -1,10 +1,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { SEOOptimizationResult, Language } from "../types";
 
-// Using a fallback key for demo purposes if environment variable is missing
-// In production, this should always be process.env.API_KEY
-const apiKey = process.env.API_KEY;
-const ai = new GoogleGenAI({ apiKey: apiKey || 'dummy-key' });
+const apiKey = process.env.API_KEY || '';
+const ai = new GoogleGenAI({ apiKey });
 
 export const generateSEOData = async (
   productTitle: string,
@@ -12,7 +10,7 @@ export const generateSEOData = async (
   language: Language
 ): Promise<SEOOptimizationResult> => {
   if (!apiKey) {
-    throw new Error("API Key not found.");
+    throw new Error("API Key not found. Please set REACT_APP_GEMINI_API_KEY.");
   }
 
   const langInstruction = language === 'zh' 

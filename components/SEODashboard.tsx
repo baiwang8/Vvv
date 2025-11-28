@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Globe, Search, Copy, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, Globe, Search, Copy, ArrowRight } from 'lucide-react';
 import { generateSEOData } from '../services/geminiService';
 import { SEOOptimizationResult, Language } from '../types';
 import { TRANSLATIONS } from '../i18n';
